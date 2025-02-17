@@ -29,7 +29,7 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
         }
         public async Task<EmpleadoView> FindEmpleadoAsync(int idEmpleado)
         {
-            var consulta = from datos in this.context.EmpleadosView
+            var consulta = from datos in this.context.EmpleadosViews
                            where datos.IdEmpleado == idEmpleado
                            select datos;
             var data = await consulta.ToListAsync();
