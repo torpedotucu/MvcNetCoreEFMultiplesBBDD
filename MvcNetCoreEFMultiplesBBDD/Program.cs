@@ -1,7 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using MvcNetCoreEFMultiplesBBDD.Data;
+using MvcNetCoreEFMultiplesBBDD.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IRepositoryEmpleados,RepositoryEmpleadosOracle>();
+//string connectionString = builder.Configuration.GetConnectionString("SqlHospital");
+//builder.Services.AddTransient<RepositoryEmpleados>();
+//builder.Services.AddDbContext<HospitalContext>(options => options.UseSqlServer(connectionString));
+string connectionString = builder.Configuration.GetConnectionString("OracleHospital");
+builder.Services.AddDbContext<HospitalContext>(options => options.UseOracle(connectionString));
 
 var app = builder.Build();
 

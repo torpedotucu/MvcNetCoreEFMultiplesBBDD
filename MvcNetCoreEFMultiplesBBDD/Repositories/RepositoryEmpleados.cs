@@ -4,7 +4,7 @@ using MvcNetCoreEFMultiplesBBDD.Models;
 
 namespace MvcNetCoreEFMultiplesBBDD.Repositories
 {
-    public class RepositoryEmpleados
+    public class RepositoryEmpleados:IRepositoryEmpleados
     {
         private HospitalContext context;
 
@@ -15,8 +15,8 @@ namespace MvcNetCoreEFMultiplesBBDD.Repositories
         
         public async Task<List<EmpleadoView>> GetEmpleadosAsync()
         {
-            var consulta = from datos in this.context.EmpleadosViews
-                           select datos;
+            string sql = "SP_ALL_VEMPLEADOS";
+            var consulta = this.context.EmpleadosViews.FromSqlRaw(sql);
             return await consulta.ToListAsync();
         }
 
