@@ -23,5 +23,7 @@ namespace MvcNetCoreEFMultiplesBBDD.Controllers
             EmpleadoView empleado = await this.repo.FindEmpleadoAsync(id);
             return View(empleado);
         }
+
+        
     }
 }
